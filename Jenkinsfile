@@ -2,7 +2,7 @@ pipeline {
     agent any  // Runs on any available Windows agent
 
     environment {
-        NODEJS_HOME = "C:\\Program Files\\nodejs"  // Modify based on actual Node.js installation path
+        NODEJS_HOME = "C:\\Program Files\\nodejs"  
         PATH = "${NODEJS_HOME};${env.PATH}"
     }
 
@@ -41,7 +41,7 @@ pipeline {
             steps {
                 script {
                     echo "Building application..."
-                    bat 'npm run build'  // Modify if using a different build command
+                    bat 'npm run build'  
                 }
             }
         }
@@ -50,8 +50,8 @@ pipeline {
             steps {
                 script {
                     echo "Deploying to Staging Environment..."
-                    bat 'scp -r ./dist user@staging-server:C:/staging-app/'  // Modify for your staging setup
-                    bat 'ssh user@staging-server "C:/staging-app/restart-server.bat"' // Restart staging server
+                    bat 'scp -r ./dist user@staging-server:C:/staging-app/'  
+                    bat 'ssh user@staging-server "C:/staging-app/restart-server.bat"' 
                 }
             }
         }
@@ -66,8 +66,8 @@ pipeline {
             steps {
                 script {
                     echo "Deploying to Production Environment..."
-                    bat 'scp -r ./dist user@production-server:C:/production-app/'  // Modify for your production setup
-                    bat 'ssh user@production-server "C:/production-app/restart-server.bat"' // Restart production server
+                    bat 'scp -r ./dist user@production-server:C:/production-app/'  
+                    bat 'ssh user@production-server "C:/production-app/restart-server.bat"' 
                 }
             }
         }
